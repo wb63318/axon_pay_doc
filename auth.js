@@ -1,4 +1,4 @@
-export const config = {
+ export const config = {
     runtime: 'edge',
   };
   
@@ -29,4 +29,3 @@ export const config = {
       },
     });
   }
-  

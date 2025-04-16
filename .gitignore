@@ -1,7 +1,8 @@
 # VitePress
 docs/.vitepress/dist/
 docs/.vitepress/cache/
-
+api
+middleware.js
 
 # Node modules
 node_modules/
