@@ -1,0 +1,6 @@
+{
+    "buildCommand": "npm run build",
+    "outputDirectory": "docs/.vitepress/dist",
+    "ignoreCommand": "git diff --quiet HEAD^ HEAD ./docs"
+  }
+  
