@@ -1,5 +1,14 @@
 {
-    "buildCommand": "npm run build",
-    "outputDirectory": "docs/.vitepress/dist"
+    "functions": {
+      "auth.js": {
+        "runtime": "edge"
+      }
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "middlewarePath": "auth"
+      }
+    ]
   }
   
