@@ -4,15 +4,19 @@ layout: home
 
 hero:
   name: "Axon Pay Docs"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  text: Your smart digital payment platform.
+  tagline: Fast, secure, and developer-friendly.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Getting Started
+      link: /guide/pay_components
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Mermaid
+      link: /guide/mermaid/axonpay_transaction_flowchart
+    - theme: alt
+      text: GitHub
+      link: https://github.com/AxonInfoSystems/AxonPay-Docs
+
 
 features:
   - title: Feature A

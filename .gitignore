@@ -1,3 +1,23 @@
-node_modules
-docs/.vitepress/dist
-docs/.vitepress/cache
+# VitePress
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# Node modules
+node_modules/
+.temp/
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.*.local
+
+# System
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
