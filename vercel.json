@@ -1,13 +1,14 @@
 {
     "functions": {
-        "middleware.js": {
-            "runtime": "@vercel/edge"
-        }
+      "middleware.js": {
+        "runtime": "edge"
+      }
     },
     "routes": [
-        {
-            "src": "/(.*)",
-            "middlewarePath": "middleware.js"
-        }
+      {
+        "src": "/(.*)",
+        "middlewarePath": "middleware.js"
+      }
     ]
-}
+  }
+  

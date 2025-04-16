@@ -1,34 +1,23 @@
 // middleware.js
+import { NextResponse } from 'next/server'
 
 export const config = {
-  runtime: 'edge', // Ensure it runs at the edge (Vercel's Edge Functions)
-};
+  matcher: '/:path*'
+}
 
-const USERNAME = process.env.BASIC_AUTH_USERNAME;  // Fetch from Vercel environment variables
-const PASSWORD = process.env.BASIC_AUTH_PASSWORD;  // Fetch from Vercel environment variables
+export function middleware(request) {
+  const basicAuth = request.headers.get('authorization')
+  const url = request.nextUrl
 
-export default async function handler(req) {
-  const auth = req.headers.get('authorization');  // Get the Authorization header
+  const username = process.env.BASIC_AUTH_USERNAME
+  const password = process.env.BASIC_AUTH_PASSWORD
 
-  if (auth) {
-    const [scheme, encoded] = auth.split(' ');  // Split the Basic auth header
+  const validAuth = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
 
-    if (scheme === 'Basic') {
-      const decoded = atob(encoded);  // Decode base64 encoded credentials
-      const [user, pass] = decoded.split(':');  // Split decoded credentials
-
-      if (user === USERNAME && pass === PASSWORD) {
-        return fetch(req);  // Proceed with the request if authentication is successful
-      }
-    }
+  if (basicAuth === validAuth) {
+    return NextResponse.next()
   }
 
-  // Return Unauthorized if authentication fails
-  return new Response('Unauthorized', {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="Secure Area"',
-    },
-  });
+  url.pathname = '/api/auth'
+  return NextResponse.rewrite(url)
 }
-``
