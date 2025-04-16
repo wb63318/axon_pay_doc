@@ -14,7 +14,7 @@ export default async function handler(req) {
       const decoded = atob(encoded);
       const [user, pass] = decoded.split(':');
       if (user === USERNAME && pass === PASSWORD) {
-        // Continue to the requested page
+        // Proceed to the requested page
         const response = await fetch(req);
         return response;
       }
