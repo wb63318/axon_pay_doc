@@ -1,6 +1,8 @@
 ---
 title: Disbursement Transaction - Local Transaction - Mobile Wallet
 ---
+**Disbursement Transaction - Local Transaction - Mobile Wallet Flow**
+
 ``` mermaid
 graph TD
     ExternalService --> ApiGateway

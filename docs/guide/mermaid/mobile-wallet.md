@@ -1,6 +1,8 @@
 ---
 title: Mobile Wallet
 ---
+**Mobile Wallet**
+
 ```mermaid
 graph TD
     ExternalService --> ApiGateway

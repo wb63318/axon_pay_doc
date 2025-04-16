@@ -1,6 +1,8 @@
 ---
 title: Remittance Transaction - Mobile Wallet
 ---
+**Remittance Transaction - Mobile Wallet Flow**
+
 ```mermaid
 graph TD
 ExternalService --> ApiGateway

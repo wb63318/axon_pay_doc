@@ -17,6 +17,7 @@ export default withMermaid(
       sidebar: [
         {
           text: 'Getting Started',
+          collapsed: true,
           items: [
             { text: 'AxonPay Components', link: '/guide/pay_components' },
             { text: 'AxonPay Functionalities', link: '/guide/pay_functionalities' },
@@ -26,6 +27,7 @@ export default withMermaid(
         },
         {
           text: 'Mermaid',
+          collapsed:true,
           items: [
             { text: 'AxonPay Transaction Flowcharts', link: '/guide/mermaid/axonpay_transaction_flowchart' },
             { text: 'BankCard', link: '/guide/mermaid/bankcard' },

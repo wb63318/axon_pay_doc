@@ -1,6 +1,8 @@
 ---
 title: Remittance Transaction - Bank Account
 ---
+**Remittance Transaction - Bank Account Flow**
+
 ```mermaid
 graph TD
     ExternalService --> ApiGateway

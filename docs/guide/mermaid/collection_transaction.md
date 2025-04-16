@@ -2,6 +2,8 @@
 title: Collection Transaction - Bank Card
 ---
 
+**Collection Transaction - Bank Card Flow**
+
 ``` mermaid
 graph TD
     ExternalService --> ApiGateway

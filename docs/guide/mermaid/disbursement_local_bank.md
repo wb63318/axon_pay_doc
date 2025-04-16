@@ -1,6 +1,8 @@
 ---
 title: Disbursement Transaction - Local Transaction - Bank Account
 ---
+**Disbursement Transaction - Local Transaction - Bank Account Flow**
+
 ```mermaid
 graph TD
     ExternalService --> ApiGateway

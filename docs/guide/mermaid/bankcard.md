@@ -2,6 +2,8 @@
 title: Bank Card
 ---
 
+**Bank Card Flow**
+
 ```mermaid
 graph TD
     ExternalService --> ApiGateway
