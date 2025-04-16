@@ -1,23 +1,39 @@
-// middleware.js
-import { NextResponse } from 'next/server'
-
 export const config = {
-  matcher: '/:path*'
-}
+  matcher: '/**',
+};
 
-export function middleware(request) {
-  const basicAuth = request.headers.get('authorization')
-  const url = request.nextUrl
+export default async function middleware(req) {
+  const basicAuth = req.headers.get('authorization');
 
-  const username = process.env.BASIC_AUTH_USERNAME
-  const password = process.env.BASIC_AUTH_PASSWORD
+  const USER = process.env.BASIC_AUTH_USERNAME;
+  const PASS = process.env.BASIC_AUTH_PASSWORD;
 
-  const validAuth = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-
-  if (basicAuth === validAuth) {
-    return NextResponse.next()
+  if (!basicAuth) {
+    return new Response('Unauthorized', {
+      status: 401,
+      headers: {
+        'WWW-Authenticate': 'Basic realm="Secure Area"',
+      },
+    });
   }
 
-  url.pathname = '/api/auth'
-  return NextResponse.rewrite(url)
+  const [scheme, encoded] = basicAuth.split(' ');
+
+  if (scheme !== 'Basic' || !encoded) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  const decoded = atob(encoded);
+  const [user, pass] = decoded.split(':');
+
+  if (user !== USER || pass !== PASS) {
+    return new Response('Unauthorized', {
+      status: 401,
+      headers: {
+        'WWW-Authenticate': 'Basic realm="Secure Area"',
+      },
+    });
+  }
+
+  return new Response(null, { status: 200 }); // allow through
 }
