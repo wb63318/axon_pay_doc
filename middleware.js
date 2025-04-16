@@ -14,15 +14,18 @@ export default async function handler(req) {
       const decoded = atob(encoded);
       const [user, pass] = decoded.split(':');
       if (user === USERNAME && pass === PASSWORD) {
-        return new Response(null, { status: 200 });
+        // Continue to the requested page
+        const response = await fetch(req);
+        return response;
       }
     }
   }
 
+  // If not authorized, send the prompt
   return new Response('Unauthorized', {
     status: 401,
     headers: {
-      'WWW-Authenticate': 'Basic realm="Secure Area"'
-    }
+      'WWW-Authenticate': 'Basic realm="Secure Area"',
+    },
   });
 }
