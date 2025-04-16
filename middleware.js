@@ -1,27 +1,29 @@
+// middleware.js
+
 export const config = {
-  runtime: 'edge',
+  runtime: 'edge', // Ensure it runs at the edge (Vercel's Edge Functions)
 };
 
-const USERNAME = process.env.BASIC_AUTH_USERNAME;
-const PASSWORD = process.env.BASIC_AUTH_PASSWORD;
+const USERNAME = process.env.BASIC_AUTH_USERNAME;  // Fetch from Vercel environment variables
+const PASSWORD = process.env.BASIC_AUTH_PASSWORD;  // Fetch from Vercel environment variables
 
 export default async function handler(req) {
-  const auth = req.headers.get('authorization');
+  const auth = req.headers.get('authorization');  // Get the Authorization header
 
   if (auth) {
-    const [scheme, encoded] = auth.split(' ');
+    const [scheme, encoded] = auth.split(' ');  // Split the Basic auth header
+
     if (scheme === 'Basic') {
-      const decoded = atob(encoded);
-      const [user, pass] = decoded.split(':');
+      const decoded = atob(encoded);  // Decode base64 encoded credentials
+      const [user, pass] = decoded.split(':');  // Split decoded credentials
+
       if (user === USERNAME && pass === PASSWORD) {
-        // Proceed to the requested page
-        const response = await fetch(req);
-        return response;
+        return fetch(req);  // Proceed with the request if authentication is successful
       }
     }
   }
 
-  // If not authorized, send the prompt
+  // Return Unauthorized if authentication fails
   return new Response('Unauthorized', {
     status: 401,
     headers: {
@@ -29,3 +31,4 @@ export default async function handler(req) {
     },
   });
 }
+``
