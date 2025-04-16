@@ -2,8 +2,11 @@ export const config = {
     runtime: 'edge',
 };
 
-const USERNAME = process.env.BASIC_AUTH_USER
-const PASSWORD = process.env.BASIC_AUTH_PASS
+/* const USERNAME = process.env.BASIC_AUTH_USER
+const PASSWORD = process.env.BASIC_AUTH_PASS */
+
+const username = 'admin';
+const password = 'mypassword';
 
 export default async function middleware(req) {
     const auth = req.headers.get('authorization');
